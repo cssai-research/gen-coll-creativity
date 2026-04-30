@@ -1,0 +1,69 @@
+meta:
+  output_root: "outputs/robustness"
+  paper_table: "Robustness checks"
+
+defaults:
+  num_nodes: 100
+  average_degree: 4
+  seed: 42
+  resume: true
+  save_json: true
+  make_plot: false
+
+grids:
+  num_nodes: [100, 300]
+  random_walk_steps: [10, 20, 30]
+  iterations: [5, 10]
+  starting_nodes: [5, 10]
+  start_nodes_sample: [5, 10]
+  pair_set_seed: [1, 42, 123]
+
+checks:
+  - name: "RW depth (E)"
+    experiment: "E"
+    vary: ["random_walk_steps"]
+    fixed:
+      iterations: 10
+      starting_nodes: 10
+      pair_set_seed: 42
+      num_pairs: 500
+      pair_offset: 0
+
+  - name: "Monte Carlo stability (E)"
+    experiment: "E"
+    vary: ["iterations", "starting_nodes"]
+    fixed:
+      random_walk_steps: 20
+      pair_set_seed: 42
+      num_pairs: 500
+      pair_offset: 0
+
+  - name: "Pair-set robustness (E)"
+    experiment: "E"
+    vary: ["pair_set_seed"]
+    fixed:
+      random_walk_steps: 20
+      iterations: 10
+      starting_nodes: 10
+      num_pairs: 500
+      pair_offset: 0
+
+  - name: "RW depth (F)"
+    experiment: "F"
+    vary: ["random_walk_steps"]
+    fixed:
+      iterations: 5
+      start_nodes_sample: 10
+
+  - name: "Graph size (E)"
+    experiment: "E"
+    vary: ["num_nodes"]
+    fixed:
+      average_degree: 4
+      seed: 42
+      random_walk_steps: 20
+      iterations: 10
+      starting_nodes: 10
+      pair_set_seed: 42
+      num_pairs: 300
+      pair_offset: 0

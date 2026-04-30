@@ -1,0 +1,15 @@
+networkx
+matplotlib
+scikit-learn
+tqdm
+pandas
+numpy
+seaborn
+scipy
+pyyaml
+psutil
+
+
+# pip install -r requirements.txt
+
+# source hndsenv/bin/activate
